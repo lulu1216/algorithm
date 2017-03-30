@@ -1,0 +1,40 @@
+[编程题]或与加
+给定 x, k ，求满足 x + y = x | y 的第 k 小的正整数 y 。 | 是二进制的或(or)运算，例如 3 | 5 =7。 
+比如当 x=5，k=1时返回 2，因为5+1=6 不等于 5|1=5，而 5+2=7 等于 5 | 2 = 7。 
+/**
+ * Created by luzhang on 2017/3/30.
+ */
+import java.math.BigInteger;
+import java.util.*;
+public class Main12{
+    public static void main(String... args){
+        Scanner sc = new Scanner(System.in);
+
+        int x = sc.nextInt();
+        int k = sc.nextInt();
+        String k_index = Integer.toString(k, 2);
+        judge(x, k_index, k);
+
+    }
+    public static void judge(int x,String k_index,int k){
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        int y = 0;
+        int size = k_index.length()-1;
+//        int i = 0;
+        while (k != 0) {
+            if ((x & 1) == 1) {
+                sb.append("0");
+//                i++;
+            } else {
+//                if (i <= size + 1) {
+                    sb.append(k_index.charAt(size--));
+                    k = k >>> 1;
+//                }
+            }
+            x = x >>> 1;
+        }
+        BigInteger num = new BigInteger(sb.reverse().toString(), 2);
+        System.out.print(num);
+    }
+}
