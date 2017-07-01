@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <!-- ?useUnicode=true&amp;characterEncoding=utf8为了支持中文插入 -->
+                <property name="url"
+                          value="jdbc:mysql://10.3.255.99:3306?
+                          useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false" />
+                <!--<property name="username" value="ipom_analysis" />-->
+                <!--<property name="password" value="%up4!VLTqr!V" />-->
+                <property name="username" value="ipom_website" />
+                <property name="password" value="EoZo#6#dW2zT" />
+                <!--一段时间又默认执行下简单的查询，表明自己这个连接还活着-->
+                <property name="poolPingEnabled" value="true"/>
+                <property name="poolPingQuery" value="select 1"/>
+                <property name="poolPingConnectionsNotUsedFor" value="3600000"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mappers/article.xml" />
+        <mapper resource="mappers/result.xml" />
+        <mapper resource="mappers/new.xml" />
+		<mapper resource="mappers/sensitive.xml" />
+		<mapper resource="mappers/bbsinfo.xml" />
+		<mapper resource="mappers/dict.xml" />
+		<mapper resource="mappers/neg.xml" />
+		<mapper resource="mappers/sudden.xml" />
+		<mapper resource="mappers/monitor.xml" />
+    </mappers>
+</configuration>
